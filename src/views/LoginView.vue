@@ -9,8 +9,8 @@
       class="demo-ruleForm"
     >
       <h1>后台管理系统</h1>
-      <el-form-item label="账号" prop="username">
-        <el-input v-model="ruleForm.username" autocomplete="off" />
+      <el-form-item label="账号" prop="userName">
+        <el-input v-model="ruleForm.userName" autocomplete="off" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input
@@ -42,14 +42,18 @@ import { defineComponent, getCurrentInstance, reactive, ref } from 'vue'
 // defineComponent函数支持typescript 的参数类型推断（专门为ts准备，若使用TS+VUE3 ,推荐使用他
 import type { FormInstance } from 'element-plus'
 import { LoginFormInt } from '@/types/login'
+import { login } from '../http/api'
+import { useRouter, useRoute } from 'vue-router'
 // type LoginFormInt = {
 //   username: string
 //   password: string
 // }
+const router = useRouter()
+const route = useRoute()
 
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive<LoginFormInt>({
-  username: '',
+  userName: '',
   password: '',
 })
 const rules = reactive({
@@ -78,9 +82,17 @@ const resetForm = (formEl: FormInstance | undefined) => {
 }
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  ruleFormRef.value?.validate((valid) => {
+  ruleFormRef.value?.validate(async (valid) => {
     if (valid) {
-      console.log('submit!')
+      // console.log('submit!')
+      login(ruleForm).then((res) => {
+        // console.log(res, 'login')
+        //保存token
+        localStorage.setItem('token', res.data.token)
+        // 跳转首页
+        router.push({ name: 'home' })
+      })
+      // console.log(res, 'login')
     } else {
       console.log('error submit!')
       return false

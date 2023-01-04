@@ -1,4 +1,4 @@
 export type LoginFormInt = {
-  username: string
+  userName: string
   password: string
 }
