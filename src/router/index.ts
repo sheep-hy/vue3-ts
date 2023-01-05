@@ -19,6 +19,18 @@ const routes: Array<RouteRecordRaw> = [
         meta: { isShow: true, title: '用户列表' },
         component: () => import('../views/UserView.vue'),
       },
+      {
+        name: 'roleList',
+        path: 'roleList',
+        meta: { isShow: true, title: '角色列表' },
+        component: () => import('../views/RoleView.vue'),
+      },
+      {
+        name: 'authority',
+        path: 'authority',
+        meta: { isShow: false, title: '权限列表' },
+        component: () => import('../views/AuthorityView.vue'),
+      },
     ],
   },
   {
