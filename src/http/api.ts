@@ -27,4 +27,10 @@ export const getUserList = () => {
     method: 'get',
   })
 }
+export const getAuthority = () => {
+  return $http({
+    url: '/getAuthority',
+    method: 'get',
+  })
+}
 
