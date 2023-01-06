@@ -10,7 +10,7 @@
             <el-col :span="16"><h2>后台系统</h2></el-col>
             <!-- <el-col :span="4"><span>Tina</span></el-col> -->
             <el-col class="btn-text" :span="4">
-              <el-button>Tina</el-button></el-col
+              <el-button @click="layout">退出</el-button></el-col
             >
           </el-row>
 
@@ -73,12 +73,10 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-// export default defineComponent({
-//   name: 'HomeView',
-//   components: {
-//     // HelloWorld,
-//   },
-// })
+const layout = () => {
+  localStorage.removeItem('token')
+  router.push('/login')
+}
 </script>
 <style lang="scss" scoped>
 .logo {

@@ -61,9 +61,10 @@ const router = createRouter({
 })
 router.beforeEach(async (to, from) => {
   const token = localStorage.getItem('token')
+  // console.log(token, 'token')
   if (!token && to.path !== '/login') {
-    // router.push('/login')
-    return '/login'
+    router.push('/login')
+    // return '/login'
   } else if (token && to.name !== 'login') {
     // 获取动态路由
     // next({ name: 'home' })
