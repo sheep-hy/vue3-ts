@@ -33,4 +33,10 @@ export const getAuthority = () => {
     method: 'get',
   })
 }
+export const getRouter = () => {
+  return $http({
+    url: '/getRouter',
+    method: 'get',
+  })
+}
 

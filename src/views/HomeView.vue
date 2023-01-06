@@ -24,7 +24,7 @@
             active-text-color="#ffd04b"
             background-color="#545c64"
             class="el-menu-vertical-demo"
-            default-active="1"
+            :default-active="route.path"
             text-color="#fff"
             @open="handleOpen"
             @close="handleClose"
@@ -61,10 +61,11 @@
 
 <script lang="ts" setup>
 import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
 const list = router.getRoutes().filter((v) => v.meta.isShow)
-console.log(list, 'router')
+console.log(route, 'router')
 // import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -103,7 +104,7 @@ h2 {
     height: calc(100vh - 80px);
   }
 }
-.el-main{
+.el-main {
   height: calc(100vh - 80px);
   overflow: auto;
 }
